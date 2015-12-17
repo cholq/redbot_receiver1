@@ -28,18 +28,18 @@ void loop() {
 
   if (XBee.available()) {
     data = XBee.read();
-    //Serial.write(data, BIN);
-    Serial.print("data=");
+    
+    /*Serial.print("data=");
     Serial.print(data);
     Serial.print(" BIN(");
     Serial.print(data, BIN);
     Serial.print(")  HEX(");
     Serial.print(data, HEX);
-    Serial.println(")");
+    Serial.println(")");*/
        
     mask_out = data & maskFORWARD_RIGHT;
     if (!(mask_out == 0)) {
-      Serial.println("found FwdR!");
+      //Serial.println("found FwdR!");
       bool_FwdR = true;
     }
     else {
@@ -48,7 +48,7 @@ void loop() {
 
     mask_out = data & maskFORWARD_LEFT;
     if (!(mask_out == 0)) {
-      Serial.println("found FwdL!");
+      //Serial.println("found FwdL!");
       bool_FwdL = true;
     }
     else {
@@ -57,7 +57,7 @@ void loop() {
     
     mask_out = data & maskREVERSE_RIGHT;
     if (!(mask_out == 0)) {
-      Serial.println("found RevR!");
+      //Serial.println("found RevR!");
       bool_RevR = true;
       bool_FwdR = false;
     }
@@ -67,7 +67,7 @@ void loop() {
 
     mask_out = data & maskREVERSE_LEFT;
     if (!(mask_out == 0)) {
-      Serial.println("found RevL!");
+      //Serial.println("found RevL!");
       bool_RevL = true;
       bool_FwdL = false;
     }
@@ -75,15 +75,6 @@ void loop() {
       bool_RevL = false;
     }
   }
-
-  Serial.print("FR=");
-  Serial.print(bool_FwdR);
-  Serial.print("  RR=");
-  Serial.print(bool_RevR);
-  Serial.print("  FL=");
-  Serial.print(bool_FwdL);
-  Serial.print("  RL=");
-  Serial.println(bool_RevL);
 
   if ((bool_FwdR == false) && (bool_FwdL == false) && (bool_RevR == false) && (bool_RevL == false)) {
     motors.brake();
@@ -102,7 +93,4 @@ void loop() {
       motors.leftDrive(-100);
     }
   }
-
-  delay(500);
-
 }
