@@ -1,6 +1,6 @@
 #include <RedBot.h>
 
-RedBotMotor motors;
+RedBotMotors motors;
 RedBotSoftwareSerial XBee;
 
 const byte maskFORWARD_RIGHT = B1;
